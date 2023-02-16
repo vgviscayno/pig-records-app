@@ -16,28 +16,65 @@ datasource db {
 }
 
 model Hog {
-  id        String   @id @default(uuid()) @db.Uuid
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  eartag    String
-  weight    Decimal
+  id            String   @id @default(uuid()) @db.Uuid
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  eartag        String
+  liveWeight    Decimal
+  farmgatePrice Decimal
 
-  transaction   Transaction? @relation(fields: [transactionId], references: [id])
-  transactionId String?      @db.Uuid
+  delivery   Delivery @relation(fields: [deliveryId], references: [id])
+  deliveryId String   @db.Uuid
+
+  order   Order?  @relation(fields: [orderId], references: [id])
+  orderId String? @db.Uuid
+
+  sellingWeight Decimal
+  sellingPrice  Decimal
+}
+
+model Supplier {
+  id         String     @id @default(uuid()) @db.Uuid
+  name       String
+  deliveries Delivery[]
+}
+
+model Delivery {
+  id            String   @id @default(uuid()) @db.Uuid
+  arrivalDate   DateTime @db.Date
+  supplier      Supplier @relation(fields: [supplierId], references: [id])
+  supplierId    String   @db.Uuid
+  modeOfPayment String
+  hogs          Hog[]
 }
 
 model Customer {
-  id           String        @id @default(uuid()) @db.Uuid
-  name         String
-  transactions Transaction[]
+  id       String    @id @default(uuid()) @db.Uuid
+  name     String
+  orders   Order[]
+  payments Payment[]
 }
 
-model Transaction {
+model Order {
   id              String   @id @default(uuid()) @db.Uuid
+  number          String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
   transactionDate DateTime @db.Date
   hogs            Hog[]
+
+  slaughterFee Decimal @default(0)
+  deliveryFee  Decimal @default(0)
+
+  customer   Customer @relation(fields: [customerId], references: [id])
+  customerId String   @db.Uuid
+}
+
+model Payment {
+  id      String  @id @default(uuid()) @db.Uuid
+  number  String
+  amount  Decimal
+  remarks String
 
   customer   Customer @relation(fields: [customerId], references: [id])
   customerId String   @db.Uuid
