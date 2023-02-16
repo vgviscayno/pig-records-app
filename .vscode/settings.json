@@ -1,3 +1,6 @@
 {
-  "docwriter.hotkey.mac": "⌥ + ."
+  "docwriter.hotkey.mac": "⌥ + .",
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  }
 }
