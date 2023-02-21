@@ -17,32 +17,36 @@ export default function MainNavigation() {
       <NavigationMenu className="ml-2 justify-start">
         <NavigationMenuList className="space-x-4">
           <NavigationMenuItem>
-            <NavLink to="/deliveries">
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Deliveries
-              </NavigationMenuLink>
-            </NavLink>
+            <NavigationMenuLink
+              asChild
+              className={navigationMenuTriggerStyle()}
+            >
+              <NavLink to="/deliveries">Deliveries</NavLink>
+            </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavLink to="/inventory">
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Inventory
-              </NavigationMenuLink>
-            </NavLink>
+            <NavigationMenuLink
+              asChild
+              className={navigationMenuTriggerStyle()}
+            >
+              <NavLink to="/inventory"> Inventory</NavLink>
+            </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavLink to="/suppliers">
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Suppliers
-              </NavigationMenuLink>
-            </NavLink>
+            <NavigationMenuLink
+              asChild
+              className={navigationMenuTriggerStyle()}
+            >
+              <NavLink to="/suppliers">Suppliers</NavLink>
+            </NavigationMenuLink>
           </NavigationMenuItem>
           <NavigationMenuItem>
-            <NavLink to="/customers">
-              <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Customers
-              </NavigationMenuLink>
-            </NavLink>
+            <NavigationMenuLink
+              asChild
+              className={navigationMenuTriggerStyle()}
+            >
+              <NavLink to="/customers">Customers</NavLink>
+            </NavigationMenuLink>
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>

@@ -93,11 +93,14 @@ const columnHelper = createColumnHelper<
 
 const columns = [
   columnHelper.accessor("arrivalDate", {
-    cell: (info) => (
-      <Link to={`./${id}`}>
-        {format(new Date(info.getValue() as string), "dd MMMM yyyy (EEEE)")}
-      </Link>
-    ),
+    cell: (info) => {
+      return (
+        //@ts-ignore
+        <Link to={`./${info.row.original.id}`}>
+          {format(new Date(info.getValue() as string), "dd MMMM yyyy (EEEE)")}
+        </Link>
+      );
+    },
     header: () => <>Arrival Date</>,
   }),
   columnHelper.accessor("supplier", {
