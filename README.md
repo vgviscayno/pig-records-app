@@ -6,6 +6,14 @@
 
 From your terminal:
 
+Use NVM to manage your version!
+
+Install guide: <br>
+https://www.freecodecamp.org/news/node-version-manager-nvm-install-guide/
+
+using `nvm use` with `.nvmrc`: <br>
+https://github.com/coreybutler/nvm-windows/issues/16
+
 ```sh
 npm run dev
 ```
