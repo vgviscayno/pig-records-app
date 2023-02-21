@@ -20,8 +20,8 @@ model Hog {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   eartag        String
-  liveWeight    Decimal
-  farmgatePrice Decimal
+  liveWeight    Float
+  farmgatePrice Float
 
   delivery   Delivery @relation(fields: [deliveryId], references: [id])
   deliveryId String   @db.Uuid
@@ -29,13 +29,13 @@ model Hog {
   order   Order?  @relation(fields: [orderId], references: [id])
   orderId String? @db.Uuid
 
-  sellingWeight Decimal
-  sellingPrice  Decimal
+  sellingWeight Float
+  sellingPrice  Float
 }
 
 model Supplier {
   id         String     @id @default(uuid()) @db.Uuid
-  name       String
+  name       String     @unique
   deliveries Delivery[]
 }
 
@@ -50,7 +50,7 @@ model Delivery {
 
 model Customer {
   id       String    @id @default(uuid()) @db.Uuid
-  name     String
+  name     String    @unique
   orders   Order[]
   payments Payment[]
 }
@@ -63,17 +63,17 @@ model Order {
   transactionDate DateTime @db.Date
   hogs            Hog[]
 
-  slaughterFee Decimal @default(0)
-  deliveryFee  Decimal @default(0)
+  slaughterFee Float @default(0)
+  deliveryFee  Float @default(0)
 
   customer   Customer @relation(fields: [customerId], references: [id])
   customerId String   @db.Uuid
 }
 
 model Payment {
-  id      String  @id @default(uuid()) @db.Uuid
+  id      String @id @default(uuid()) @db.Uuid
   number  String
-  amount  Decimal
+  amount  Float
   remarks String
 
   customer   Customer @relation(fields: [customerId], references: [id])

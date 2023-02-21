@@ -7,6 +7,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
+import MainNavigation from "./components/MainNavigation";
 
 import styles from "./tailwind.css";
 
@@ -26,6 +27,7 @@ export default function App() {
         <Links />
       </head>
       <body>
+        <MainNavigation />
         <Outlet />
         <ScrollRestoration />
         <Scripts />
